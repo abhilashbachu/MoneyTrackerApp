@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-9">
+        <h6>Money Tracker or Money Regulator</h6>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical"
+          name="left-nav-div">
+          <a value="add-money-tab-value" name="add-track-money" class="nav-link active" id="v-pills-track-tab"
+            data-toggle="pill" href="#v-pills-track" role="tab" aria-controls="v-pills-track"
+            aria-selected="false">Track Money/ Add
+            Details</a>
+          <a value="overview-tab-value" class=" nav-link" id="v-pills-overview-tab" data-toggle="pill"
+            href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true"
+            name="overview-tab">Overview</a>
+          <a value="Savings" class="nav-link" id="v-pills-savings-tab" data-toggle="pill" href="#v-pills-savings"
+            role="tab" aria-controls="v-pills-savings" aria-selected="false">Savings Overview</a>
+          <a value="Income" class="nav-link" id="v-pills-income-tab" data-toggle="pill" href="#v-pills-income"
+            role="tab" aria-controls="v-pills-income" aria-selected="false">Income Overview</a>
+          <a value="Investments" class="nav-link" id="v-pills-investments-tab" data-toggle="pill"
+            href="#v-pills-investments" role="tab" aria-controls="v-pills-investments" aria-selected="false">
+            Investments Overview</a>
+          <a value="Expenses" class="nav-link" id="v-pills-expenses-tab" data-toggle="pill" href="#v-pills-expenses"
+            role="tab" aria-controls="v-pills-expenses" aria-selected="false"> Expenses Overview</a>
+          <a value="add-subcategory-tab" class="nav-link" id="v-pills-addsubcategory-tab" data-toggle="pill"
+            href="#v-pills-addsubcategory" role="tab" aria-controls="v-pills-addsubcategory" aria-selected="false"
+            name="add-subcategory-tab"> Add
+            SubCategory</a>
+        </div>
+      </div>
+      <div class="col-9">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-track" role="tabpanel" aria-labelledby="v-pills-track-tab">
+            <!------>
+            <div class="trackmoney-heading" name = "trackmoney-heading">
+              <h4>Track Your Money</h4>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-3">
+                <div class="btn-group">
+                  <button name="category-button" type="button" id="tracking-dropdown"
+                    class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Select Category
+                  </button>
+                  <div class="dropdown-menu" name="category-dropdown-menu">
+                    <a value="Savings" class="dropdown-item" href="#">Savings</a>
+                    <a value="Income" class="dropdown-item" href="#">Income</a>
+                    <a value="Investments" class="dropdown-item" href="#">Investments</a>
+                    <a value="Expenses" class="dropdown-item" href="#">Expenses</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="btn-group" style="display:none" name="subcategory-div">
+                  <button name="subcategory-button" type="button" id="tracking-dropdown-subcategory"
+                    class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Select subcategory
+                  </button>
+                  <div class="dropdown-menu" name="subcategory-dropdown-menu">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-5" name= "expenses-threshold-anchorLink">
+                <br />
+                <a name="expenses-threshold" href="#"><u>set a threshold value for you expenses</u></a>
+              </div>
+            </div>
+            <div class="row mt-2" style= "display: none;" name = "expenses-threshold-display">
+              <div class="col-4">
+                  <input name="expenses-threshold-input-value" class="form-control input-savings-threshold-value"
+                    type="number" placeholder="Threshold Value">
+              </div>
+              <div class="col-5">
+                <button name="expenses-threshold-input-button" type="button"
+                  class="btn btn-success btn-submit-expense">&check;</button>
+              </div>
+            </div>
+            <div class="row mt-4" name= "addMoney-input-main-row">
+              <div class="col-7">
+                <input name="addMoney-input-description" class="form-control input-expense-description" type="text"
+                  placeholder="Description">
+              </div>
+              <div class="col-4">
+                <input name="addMoney-input-value" class="form-control input-expense-value" type="number"
+                  placeholder="Value">
+              </div>
+              <div class="col-1">
+                <button name="addMoney-input-button" type="button"
+                  class="btn btn-success btn-submit-expense">&check;</button>
+              </div>
+            </div>
+            <br />
+            <table class="table" name = "addMoney-input-table">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Value</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Sub-Category</th>
+                </tr>
+              </thead>
+              <tbody name="addMoneyInput-table">
+
+              </tbody>
+            </table>
+
+            <!------>
+          </div>
+          <div class="tab-pane fade " id="v-pills-overview" role="tabpanel" aria-labelledby="v-pills-overview-tab"
+            name="overview-tab">
+            <!---->
+            <div name="overview-page">
+              <div class="row" name="overview-page-heading">
+                <h3>Money Overview</h3>
+              </div>
+              <div class="row">
+                <div class="col-6" name="overview-page-maincontainer">
+                  <div id="overview-page-chartContainer">
+
+                  </div>
+
+                </div>
+                <div class="col-6" name="overiew-page-rightsideContainer">
+                  <br />
+                  <br />
+                </div>
+              </div>
+
+            </div>
+            <!---->
+          </div>
+          <div class="tab-pane fade" id="v-pills-savings" role="tabpanel" aria-labelledby="v-pills-savings-tab">
+            <!---->
+            <div name="savings-overview-page">
+              <div class="row" name="savings-overview-page-heading">
+                <h3>Savings Overview</h3>
+              </div>
+              <div class="row">
+                <div class="col-6" name="savings-overview-page-maincontainer">
+                  <div id="savings-overview-page-chartContainer">
+
+                  </div>
+
+                </div>
+                <div class="col-6" name="savings-overview-page-rightsideContainer">
+                  <br />
+                  <br />
+                </div>
+              </div>
+
+            </div>
+            <!---->
+          </div>
+          <div class="tab-pane fade" id="v-pills-investments" role="tabpanel" aria-labelledby="v-pills-investments-tab">
+            <!---->
+            <div name="investments-overview-page">
+              <div class="row" name="investments-overview-page-heading">
+                <h3>Investments Overview</h3>
+              </div>
+              <div class="row">
+                <div class="col-6" name="investments-overview-page-maincontainer">
+                  <div id="investments-overview-page-chartContainer">
+
+                  </div>
+
+                </div>
+                <div class="col-6" name="investments-overview-page-rightsideContainer">
+                  <br />
+                  <br />
+                </div>
+              </div>
+
+            </div>
+            <!---->
+          </div>
+          <div class="tab-pane fade" id="v-pills-expenses" role="tabpanel" aria-labelledby="v-pills-expenses-tab">
+            <!---->
+            <div name="expenses-overview-page">
+              <div class="row" name="expenses-overview-page-heading">
+                <h3>Expenses Overview</h3>
+              </div>
+              <div class="row">
+                <div class="col-6" name="expenses-overview-page-maincontainer">
+                  <div id="expenses-overview-page-chartContainer">
+
+                  </div>
+
+                </div>
+                <div class="col-6" name="expenses-overview-page-rightsideContainer">
+                  <br />
+                  <br />
+                </div>
+              </div>
+
+            </div>
+            <!---->
+          </div>
+          <div class="tab-pane fade" id="v-pills-income" role="tabpanel" aria-labelledby="v-pills-income-tab">
+            <!---->
+            <div name="income-overview-page">
+              <div class="row" name="income-overview-page-heading">
+                <h3>Income Overview</h3>
+              </div>
+              <div class="row">
+                <div class="col-6" name="income-overview-page-maincontainer">
+                  <div id="income-overview-page-chartContainer">
+
+                  </div>
+
+                </div>
+                <div class="col-6" name="income-overview-page-rightsideContainer">
+                  <br />
+                  <br />
+                </div>
+              </div>
+
+            </div>
+            <!---->
+          </div>
+          <div class="tab-pane fade" id="v-pills-addsubcategory" role="tabpanel"
+            aria-labelledby="v-pills-addsubcategory-tab">
+            <!---->
+            <div name="add-subcategory-div">
+              <div class="row">
+                <h3><b>Add Subcategory</b></h3>
+              </div>
+              <div class="container">
+                <div class="row mt-4">
+                  <div class="col-3">
+                    <input name="addsubcategory-input-name" class="form-control input-expense-description" type="text"
+                      placeholder="Subcategory Name">
+                  </div>
+                  <div class="col-3">
+                    <input name="addsubcategory-input-description" class="form-control input-expense-description"
+                      type="text" placeholder="Description">
+                  </div>
+                  <div class="col-3">
+                    <div class="btn-group">
+                      <button name="addsubcategory-category-button" type="button" id="addsubcategory-dropdown"
+                        class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Select Category
+                      </button>
+                      <div class="dropdown-menu" name="addsubcategorypage-category-dropdown-menu">
+                        <a value="Savings" class="dropdown-item" href="#">Savings</a>
+                        <a value="Income" class="dropdown-item" href="#">Income</a>
+                        <a value="Investments" class="dropdown-item" href="#">Investments</a>
+                        <a value="Expenses" class="dropdown-item" href="#">Expenses</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <button name="addsubcategory-input-button" type="button"
+                      class="btn btn-success btn-submit-expense">&check;</button>
+                  </div>
+                </div>
+              </div>
+              <br />
+              <div class="container" name="addsubcategory-category-subcategory-list">
+
+              </div>
+            </div>
+
+            <!---->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+  integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="app.js"></script>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+</html>
