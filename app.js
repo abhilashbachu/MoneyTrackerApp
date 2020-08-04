@@ -43,7 +43,7 @@ let DataHandler = (() => {
       },
 
       getExpensesThreshold() {
-          return expensesThreshold;
+         return expensesThreshold;
       },
 
       getDataHolderTotal() {
@@ -139,14 +139,14 @@ let UIHandler = (() => {
       expensesOverviewPageMainContainer: 'expenses-overview-page-maincontainer',
       expensesOverviewPageChartContainer: 'expenses-overview-page-chartContainer',
       expensesOverviewPageRightSideContainer: 'expenses-overview-page-rightsideContainer',
-      expensesThresholdAnchorLink:'expenses-threshold-anchorLink',
-      expensesThresholdInputValue:'expenses-threshold-input-value',
-      expensesThresholdDisplay:'expenses-threshold-display',
-      expensesThresholdValueButton:'expenses-threshold-input-button',
-      addMoneyMainInputRow:'addMoney-input-main-row',
-      addMoneyTableView:'addMoney-input-table',
-      trackMoneyHeading:'trackmoney-heading',
-      expensesThresholdValueDisplay:'expenses-threshold-value-display'
+      expensesThresholdAnchorLink: 'expenses-threshold-anchorLink',
+      expensesThresholdInputValue: 'expenses-threshold-input-value',
+      expensesThresholdDisplay: 'expenses-threshold-display',
+      expensesThresholdValueButton: 'expenses-threshold-input-button',
+      addMoneyMainInputRow: 'addMoney-input-main-row',
+      addMoneyTableView: 'addMoney-input-table',
+      trackMoneyHeading: 'trackmoney-heading',
+      expensesThresholdValueDisplay: 'expenses-threshold-value-display'
 
    }
    return {
@@ -363,19 +363,19 @@ let EventHandlers = (() => {
          let category = document.getElementsByName(HTMLStrings.trackingDropDownText)[0].childNodes[0].nodeValue;
          let subcategory = document.getElementsByName(HTMLStrings.subcategorytrackingDropDownText)[0].childNodes[0].nodeValue;
 
-         if(category.toLowerCase() === "expenses") {
-                 let combinedValue = value + DataHandler.getExpensesData().totalValue;
-                 // DataHandler.getExpensesData().totalValue  DataHandler.getExpensesThreshold()
-               if(DataHandler.getExpensesThreshold() && (combinedValue>DataHandler.getExpensesThreshold() )) {
-                  alert("Expenses limit crossed");
-                   // Clear the input fields after adding element
-                document.getElementsByName(HTMLStrings.addMoneyInputDescription)[0].value = "";
-                document.getElementsByName(HTMLStrings.addMoneyInputValue)[0].value = "";
-                UIHandler.changeTextOfDropDown("select Category", HTMLStrings.trackingDropDownText);
-                document.getElementsByName(HTMLStrings.subcategorydiv)[0].style.display = "none";
-                UIHandler.changeTextOfDropDown("select subcategory", HTMLStrings.subcategorytrackingDropDownText);
-                  return;
-               }
+         if (category.toLowerCase() === "expenses") {
+            let combinedValue = value + DataHandler.getExpensesData().totalValue;
+            // DataHandler.getExpensesData().totalValue  DataHandler.getExpensesThreshold()
+            if (DataHandler.getExpensesThreshold() && (combinedValue > DataHandler.getExpensesThreshold())) {
+               alert("Expenses limit crossed");
+               // Clear the input fields after adding element
+               document.getElementsByName(HTMLStrings.addMoneyInputDescription)[0].value = "";
+               document.getElementsByName(HTMLStrings.addMoneyInputValue)[0].value = "";
+               UIHandler.changeTextOfDropDown("select Category", HTMLStrings.trackingDropDownText);
+               document.getElementsByName(HTMLStrings.subcategorydiv)[0].style.display = "none";
+               UIHandler.changeTextOfDropDown("select subcategory", HTMLStrings.subcategorytrackingDropDownText);
+               return;
+            }
          }
          //Follow the same order
          let itemsCount = DataHandler.getItemsCount() + 1;
@@ -418,19 +418,19 @@ let EventHandlers = (() => {
       },
 
       onSetSavingsClicked() {
-        let inputElement =  document.getElementsByName(HTMLStrings.expensesThresholdDisplay)[0];
-        inputElement.style.display = "flex";
-        document.getElementsByName(HTMLStrings.addMoneyMainInputRow)[0].style.display = "none";
-        document.getElementsByName(HTMLStrings.trackingDropDownText)[0].style.display = "none";
-        document.getElementsByName(HTMLStrings.addMoneyTableView)[0].style.display = "none";
-        document.getElementsByName(HTMLStrings.trackMoneyHeading)[0].innerHTML = '<h4> Enter Expenses Threshold Value </h4>'
+         let inputElement = document.getElementsByName(HTMLStrings.expensesThresholdDisplay)[0];
+         inputElement.style.display = "flex";
+         document.getElementsByName(HTMLStrings.addMoneyMainInputRow)[0].style.display = "none";
+         document.getElementsByName(HTMLStrings.trackingDropDownText)[0].style.display = "none";
+         document.getElementsByName(HTMLStrings.addMoneyTableView)[0].style.display = "none";
+         document.getElementsByName(HTMLStrings.trackMoneyHeading)[0].innerHTML = '<h4> Enter Expenses Threshold Value </h4>'
 
       },
 
       onSaveThresholdClicked() {
          let inputValue = +document.getElementsByName(HTMLStrings.expensesThresholdInputValue)[0].value;
          DataHandler.setExpensesThreshold(inputValue);
-         
+
          // Clear the input fields after adding element
          document.getElementsByName(HTMLStrings.expensesThresholdInputValue)[0].value = "";
          document.getElementsByName(HTMLStrings.expensesThresholdDisplay)[0].style.display = "none";
@@ -438,7 +438,7 @@ let EventHandlers = (() => {
          document.getElementsByName(HTMLStrings.trackingDropDownText)[0].style.display = "";
          document.getElementsByName(HTMLStrings.addMoneyTableView)[0].style.display = "";
          document.getElementsByName(HTMLStrings.trackMoneyHeading)[0].innerHTML = '<h4> Track Your Money </h4>';
-         document.getElementsByName(HTMLStrings.expensesThresholdValueDisplay)[0].innerHTML ='<br/><b>Threshold Value for expenses: </b>' + inputValue;
+         document.getElementsByName(HTMLStrings.expensesThresholdValueDisplay)[0].innerHTML = '<br/><b>Threshold Value for expenses: </b>' + inputValue;
 
       }
    }
