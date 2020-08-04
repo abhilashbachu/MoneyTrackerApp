@@ -200,11 +200,16 @@ let UIHandler = (() => {
          }
       },
 
-      addInputItem(itemObject, element, category, subcategory) {
+      addInputItem(itemObject, element, category, subcategory, flag) {
          let html = "";
          html = '<tr><th scope="row">' + itemObject.id + '</th><td>' + itemObject.date + '</td><td>' + itemObject.description + '</td><td>' + itemObject.value +
-            '</td><td>' + category + '</td><td>' + subcategory + '</td></tr>'
+            '</td><td>' + category + '</td><td>' + subcategory + '</td><td>'+"-"+'</td></tr>'
          // Add the new element
+         if(flag) {
+            let exceding =  itemObject.value - DataHandler.getExpensesThreshold();
+            html = '<tr style="color:red"><th scope="row">' + itemObject.id + '</th><td>' + itemObject.date + '</td><td>' + itemObject.description + '</td><td>' + itemObject.value +
+            '</td><td>' + category + '</td><td>' + subcategory + '</td><td>'+"This Expense exceeded threshold by: " + exceding +'</td></tr>'
+         }
          document.getElementsByName(element)[0].insertAdjacentHTML('beforeend', html);
       },
       changeTextOfDropDown(valueToSet, nameOfElement) {
@@ -363,19 +368,21 @@ let EventHandlers = (() => {
          let value = +document.getElementsByName(HTMLStrings.addMoneyInputValue)[0].value;
          let category = document.getElementsByName(HTMLStrings.trackingDropDownText)[0].childNodes[0].nodeValue;
          let subcategory = document.getElementsByName(HTMLStrings.subcategorytrackingDropDownText)[0].childNodes[0].nodeValue;
+         let expensesFlag = false;
 
          if (category.toLowerCase() === "expenses") {
-            let combinedValue = value + DataHandler.getExpensesData().totalValue;
+            // let combinedValue = value + DataHandler.getExpensesData().totalValue;
             // DataHandler.getExpensesData().totalValue  DataHandler.getExpensesThreshold()
-            if (DataHandler.getExpensesThreshold() && (combinedValue > DataHandler.getExpensesThreshold())) {
-               alert("Expenses limit crossed");
-               // Clear the input fields after adding element
-               document.getElementsByName(HTMLStrings.addMoneyInputDescription)[0].value = "";
-               document.getElementsByName(HTMLStrings.addMoneyInputValue)[0].value = "";
-               UIHandler.changeTextOfDropDown("select Category", HTMLStrings.trackingDropDownText);
-               document.getElementsByName(HTMLStrings.subcategorydiv)[0].style.display = "none";
-               UIHandler.changeTextOfDropDown("select subcategory", HTMLStrings.subcategorytrackingDropDownText);
-               return;
+            if (DataHandler.getExpensesThreshold() && (value > DataHandler.getExpensesThreshold())) {
+               expensesFlag = true;
+               // alert("Expenses limit crossed");
+               // // Clear the input fields after adding element
+               // document.getElementsByName(HTMLStrings.addMoneyInputDescription)[0].value = "";
+               // document.getElementsByName(HTMLStrings.addMoneyInputValue)[0].value = "";
+               // UIHandler.changeTextOfDropDown("select Category", HTMLStrings.trackingDropDownText);
+               // document.getElementsByName(HTMLStrings.subcategorydiv)[0].style.display = "none";
+               // UIHandler.changeTextOfDropDown("select subcategory", HTMLStrings.subcategorytrackingDropDownText);
+               // return;
             }
          }
          //Follow the same order
@@ -383,7 +390,7 @@ let EventHandlers = (() => {
          let input = DataHandler.createItem(subcategory.toLowerCase(), description, value, itemsCount);
          DataHandler.increaseItemsCount();
          DataHandler.insertItemTocategory(category, subcategory.toLowerCase(), input);
-         UIHandler.addInputItem(input, HTMLStrings.addMoneyInputTable, category, subcategory);
+         UIHandler.addInputItem(input, HTMLStrings.addMoneyInputTable, category, subcategory, expensesFlag);
 
          // Clear the input fields after adding element
          document.getElementsByName(HTMLStrings.addMoneyInputDescription)[0].value = "";
