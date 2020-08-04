@@ -145,7 +145,8 @@ let UIHandler = (() => {
       expensesThresholdValueButton:'expenses-threshold-input-button',
       addMoneyMainInputRow:'addMoney-input-main-row',
       addMoneyTableView:'addMoney-input-table',
-      trackMoneyHeading:'trackmoney-heading'
+      trackMoneyHeading:'trackmoney-heading',
+      expensesThresholdValueDisplay:'expenses-threshold-value-display'
 
    }
    return {
@@ -436,7 +437,8 @@ let EventHandlers = (() => {
          document.getElementsByName(HTMLStrings.addMoneyMainInputRow)[0].style.display = "";
          document.getElementsByName(HTMLStrings.trackingDropDownText)[0].style.display = "";
          document.getElementsByName(HTMLStrings.addMoneyTableView)[0].style.display = "";
-         document.getElementsByName(HTMLStrings.trackMoneyHeading)[0].innerHTML = '<h4> Track Your Money </h4>'
+         document.getElementsByName(HTMLStrings.trackMoneyHeading)[0].innerHTML = '<h4> Track Your Money </h4>';
+         document.getElementsByName(HTMLStrings.expensesThresholdValueDisplay)[0].innerHTML ='<br/><b>Threshold Value for expenses: </b>' + inputValue;
 
       }
    }
@@ -446,10 +448,8 @@ function setupEventHandlers() {
    document.getElementsByName(HTMLStrings.categoryDropDownMenu)[0].addEventListener("click", EventHandlers.onCategoryChange);
    document.getElementsByName(HTMLStrings.addMoneyInputButton)[0].addEventListener("click", EventHandlers.onAddMoneyForTracking);
    document.getElementsByName(HTMLStrings.subcategoryDropDownMenu)[0].addEventListener("click", EventHandlers.onSubCategoryChange);
-   //document.getElementsByName(HTMLStrings.addsubcategorytab)[0].addEventListener("click", EventHandlers.onAddCategoryTabClicked);
    document.getElementsByName(HTMLStrings.addsubcategoryInputButton)[0].addEventListener("click", EventHandlers.onAddSubcategoryClicked);
    document.getElementsByName(HTMLStrings.addsubcategoryCategoryDropDown)[0].addEventListener("click", EventHandlers.onCategorySelectedOnAddSub);
-   // document.getElementsByName(HTMLStrings.overviewTab)[0].addEventListener("click", EventHandlers.onOveriewTabClicked);
    document.getElementsByName(HTMLStrings.leftNavigationDiv)[0].addEventListener("click", EventHandlers.onLeftNavigationClicked);
    document.getElementsByName(HTMLStrings.expensesThresholdAnchorLink)[0].addEventListener("click", EventHandlers.onSetSavingsClicked);
    document.getElementsByName(HTMLStrings.expensesThresholdValueButton)[0].addEventListener("click", EventHandlers.onSaveThresholdClicked);
