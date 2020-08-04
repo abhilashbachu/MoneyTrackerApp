@@ -194,7 +194,7 @@ let UIHandler = (() => {
          document.getElementsByName(HTMLStrings.subcategoryDropDownMenu)[0].innerHTML = "";
          for (let index in subcategoriesName) {
             let captailzedName = this.capitalizeFirstLetter(subcategoriesName[index]);
-            html = '<a value=' + captailzedName + ' class="dropdown-item" href="#">' + captailzedName + '</a>'
+            html = `<a value= '${captailzedName}' class="dropdown-item" href="#"> ${captailzedName} </a>`
             // Add the new element
             document.getElementsByName(HTMLStrings.subcategoryDropDownMenu)[0].insertAdjacentHTML('beforeend', html);
          }
@@ -257,6 +257,7 @@ let UIHandler = (() => {
          let dataHolder = DataHandler.getDataHolder();
          let keys;
          let rightelement;
+         let chart;
          if (displayAllData) {
             keys = Object.keys(dataHolder);
             dataPointsArray = this.getPieChartDataArray(keys, dataHolder);
@@ -274,7 +275,7 @@ let UIHandler = (() => {
             rightelement.innerHTML = "";
             rightelement.insertAdjacentHTML('beforeend', this.getRightSideOfPie(keys, categoryObject.totalValue, categoryObject.subcategoriesData))
          }
-         let chart = new CanvasJS.Chart(elementId, piechartData);
+         chart = new CanvasJS.Chart(elementId, piechartData);
          chart.render();
       },
 
@@ -395,7 +396,7 @@ let EventHandlers = (() => {
          let anchorValue = event.target.getAttribute("value");
          if (anchorValue === "overview-tab-value") {
             if (DataHandler.getItemsCount() === 0) {
-               UIHandler.displayDefaultTextOnOverviewPage(HTMLStrings.overviewPageMainContainer)
+               UIHandler.displayDefaultTextOnOverviewPage(HTMLStrings.overviewPageChartContainer)
             } else {
                UIHandler.displayPieChartOnUI(HTMLStrings.overviewPageChartContainer, true, HTMLStrings.overviewPageRightSideContainer);
                UIHandler.changeTextOfDropDown("", HTMLStrings.overviewPageHeading)
@@ -408,7 +409,7 @@ let EventHandlers = (() => {
             let dataHolder = DataHandler.getDataHolder();
             let dataObject = dataHolder[categoryName];
             if (dataObject.totalItems === 0) {
-               UIHandler.displayDefaultTextOnOverviewPage(elementNodes.defaultText)
+               UIHandler.displayDefaultTextOnOverviewPage(elementNodes.piechartContainer)
             } else {
                UIHandler.displayPieChartOnUI(elementNodes.piechartContainer, false, elementNodes.rightContainer, categoryName);
                UIHandler.changeTextOfDropDown("", elementNodes.pageHeading);
